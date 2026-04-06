@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Outer glow -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00ccff"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f0f18"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGrad)" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Shield shape -->
+  <path d="M60 16 L92 32 L92 58 C92 80 76 98 60 106 C44 98 28 80 28 58 L28 32 Z"
+        fill="none" stroke="url(#shieldGrad)" stroke-width="2.5" filter="url(#glow)"/>
+
+  <!-- Inner shield fill -->
+  <path d="M60 20 L88 34 L88 58 C88 78 74 94 60 102 C46 94 32 78 32 58 L32 34 Z"
+        fill="url(#shieldGrad)" opacity="0.08"/>
+
+  <!-- Third eye - saffron tilak lines -->
+  <line x1="38" y1="48" x2="82" y2="48" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+  <line x1="38" y1="54" x2="82" y2="54" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+  <line x1="38" y1="60" x2="82" y2="60" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+
+  <!-- AI Brain circuit pattern inside shield -->
+  <!-- Central node -->
+  <circle cx="60" cy="54" r="4" fill="#00ff88" filter="url(#glow)"/>
+
+  <!-- Circuit lines -->
+  <line x1="60" y1="54" x2="45" y2="42" stroke="#00ff88" stroke-width="1.5" opacity="0.8"/>
+  <line x1="60" y1="54" x2="75" y2="42" stroke="#00ff88" stroke-width="1.5" opacity="0.8"/>
+  <line x1="60" y1="54" x2="48" y2="68" stroke="#00ff88" stroke-width="1.5" opacity="0.8"/>
+  <line x1="60" y1="54" x2="72" y2="68" stroke="#00ff88" stroke-width="1.5" opacity="0.8"/>
+  <line x1="60" y1="54" x2="60" y2="38" stroke="#00ff88" stroke-width="1.5" opacity="0.8"/>
+  <line x1="60" y1="54" x2="60" y2="78" stroke="#00ff88" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Outer nodes -->
+  <circle cx="45" cy="42" r="3" fill="#00ff88" opacity="0.9"/>
+  <circle cx="75" cy="42" r="3" fill="#00ff88" opacity="0.9"/>
+  <circle cx="48" cy="68" r="3" fill="#00ff88" opacity="0.9"/>
+  <circle cx="72" cy="68" r="3" fill="#00ff88" opacity="0.9"/>
+  <circle cx="60" cy="38" r="2.5" fill="#00ccff" opacity="0.9"/>
+  <circle cx="60" cy="78" r="2.5" fill="#00ccff" opacity="0.9"/>
+
+  <!-- Secondary connections -->
+  <line x1="45" y1="42" x2="38" y2="52" stroke="#00ccff" stroke-width="1" opacity="0.5"/>
+  <line x1="75" y1="42" x2="82" y2="52" stroke="#00ccff" stroke-width="1" opacity="0.5"/>
+  <line x1="48" y1="68" x2="40" y2="62" stroke="#00ccff" stroke-width="1" opacity="0.5"/>
+  <line x1="72" y1="68" x2="80" y2="62" stroke="#00ccff" stroke-width="1" opacity="0.5"/>
+
+  <!-- Tiny endpoint dots -->
+  <circle cx="38" cy="52" r="1.5" fill="#00ccff" opacity="0.6"/>
+  <circle cx="82" cy="52" r="1.5" fill="#00ccff" opacity="0.6"/>
+  <circle cx="40" cy="62" r="1.5" fill="#00ccff" opacity="0.6"/>
+  <circle cx="80" cy="62" r="1.5" fill="#00ccff" opacity="0.6"/>
+
+  <!-- Broken/cracked line on shield (vulnerability symbol) -->
+  <path d="M52 88 L56 82 L54 82 L58 76" stroke="#ff4757" stroke-width="2" stroke-linecap="round" opacity="0.8" filter="url(#glow)"/>
+</svg>

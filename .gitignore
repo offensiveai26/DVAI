@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+__pycache__/
+*.pyc
+*.db
+.vite/
+.DS_Store
+venv/
+IDEAS.md
+WALKTHROUGHS.md
+OWASP_REFERENCE.md
+ROADMAP.md
