@@ -54,7 +54,7 @@ Unlike reading about AI security, DVAI lets you **craft the exploits yourself** 
 
 ### One Command
 ```bash
-git clone https://github.com/yourusername/dvai.git
+git clone https://github.com/offensiveai26/dvai.git
 cd dvai
 ./start.sh
 # Open http://localhost:3000
