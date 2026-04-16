@@ -34,6 +34,6 @@ def mark_complete(challenge_id: str, db: Session = Depends(get_db)):
         db.add(progress)
     progress.completed = True
     progress.completed_at = datetime.utcnow()
-    progress.attempts += 1
+    progress.attempts = (progress.attempts or 0) + 1
     db.commit()
     return {"status": "completed"}
