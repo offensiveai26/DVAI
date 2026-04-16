@@ -16,25 +16,25 @@ echo ""
 echo -e " Damn Vulnerable AI${NC}"
 echo ""
 
-# Check Python
-if ! command -v python3 &> /dev/null; then
-    echo -e "${RED}Python 3 not found. Install it first.${NC}"
-    exit 1
-fi
+# Check Python (need 3.11-3.13)
+PYTHON=""
+for cmd in python3.13 python3.12 python3.11 python3; do
+    if command -v $cmd &> /dev/null; then
+        ver=$($cmd -c "import sys; print(sys.version_info.minor)")
+        if [ "$ver" -ge 11 ] && [ "$ver" -le 13 ]; then
+            PYTHON=$cmd
+            break
+        fi
+    fi
+done
 
-# Check Python version (3.11-3.13 required)
-PY_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.minor}')")
-if [ "$PY_VERSION" -gt 13 ]; then
-    echo -e "${RED}✗ Python 3.${PY_VERSION} detected - not yet supported${NC}"
-    echo -e "${RED}  DVAI requires Python 3.11-3.13 (pydantic-core doesn't support 3.14+)${NC}"
-    echo -e "${YELLOW}  Fix: brew install python@3.13 && python3.13 -m venv backend/venv${NC}"
-    exit 1
-elif [ "$PY_VERSION" -lt 11 ]; then
-    echo -e "${RED}✗ Python 3.${PY_VERSION} detected - too old${NC}"
-    echo -e "${RED}  DVAI requires Python 3.11-3.13${NC}"
+if [ -z "$PYTHON" ]; then
+    echo -e "${RED}✗ No compatible Python found (need 3.11-3.13)${NC}"
+    echo -e "${RED}  Your python3 is $(python3 --version 2>/dev/null || echo 'not installed')${NC}"
+    echo -e "${YELLOW}  Fix: brew install python@3.13${NC}"
     exit 1
 else
-    echo -e "${GREEN}✓ Python 3.${PY_VERSION} detected${NC}"
+    echo -e "${GREEN}✓ Using $($PYTHON --version)${NC}"
 fi
 
 # Check Node
@@ -61,7 +61,7 @@ echo ""
 echo -e "${GREEN}Starting backend...${NC}"
 cd backend
 if [ ! -d "venv" ]; then
-    python3 -m venv venv
+    $PYTHON -m venv venv
 fi
 source venv/bin/activate
 pip install -q -r requirements.txt
