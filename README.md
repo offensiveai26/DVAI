@@ -73,7 +73,7 @@ Starts everything including a local LLM. No API keys needed.
 cd backend
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-uvicorn app.main:app --port 8000 --reload
+python3 -m uvicorn app.main:app --port 8000 --reload
 
 # Terminal 2 - Frontend
 cd frontend
