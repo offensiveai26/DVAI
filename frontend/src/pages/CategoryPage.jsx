@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { fetchChallenges, fetchCategories } from '../api'
+import { fetchChallenges, fetchCategories, fetchProgress } from '../api'
 
 const DIFF = {
   1: { label: 'Easy', class: 'badge-easy', stars: '⭐' },
@@ -12,12 +12,14 @@ export default function CategoryPage() {
   const { categoryId } = useParams()
   const [challenges, setChallenges] = useState([])
   const [category, setCategory] = useState(null)
+  const [progress, setProgress] = useState({})
 
   useEffect(() => {
     fetchChallenges(categoryId).then(setChallenges).catch(() => {})
     fetchCategories().then((cats) => {
       setCategory(cats.find((c) => c.id === categoryId))
     }).catch(() => {})
+    fetchProgress().then((p) => setProgress(p.challenges || {})).catch(() => {})
   }, [categoryId])
 
   return (
@@ -58,16 +60,20 @@ export default function CategoryPage() {
       <div className="space-y-3">
         {challenges.map((ch, i) => {
           const d = DIFF[ch.difficulty]
+          const solved = progress[ch.id]?.completed
           return (
             <Link
               key={ch.id}
               to={`/challenge/${ch.id}`}
-              className="block card-gradient category-card p-5"
+              className={`block card-gradient category-card p-5 ${solved ? 'border-accent/30' : ''}`}
             >
               <div className="flex items-center gap-4">
                 {/* Number */}
-                <div className="w-10 h-10 rounded-lg bg-border flex items-center justify-center shrink-0">
-                  <span className="text-sm font-mono text-muted">{String(i + 1).padStart(2, '0')}</span>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${solved ? 'bg-accent/20' : 'bg-border'}`}>
+                  {solved
+                    ? <span className="text-accent text-lg">✓</span>
+                    : <span className="text-sm font-mono text-muted">{String(i + 1).padStart(2, '0')}</span>
+                  }
                 </div>
 
                 {/* Content */}
@@ -79,6 +85,11 @@ export default function CategoryPage() {
                 </div>
 
                 {/* Difficulty */}
+                {solved && (
+                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent border border-accent/30 shrink-0">
+                    Solved ✓
+                  </span>
+                )}
                 <div className={`px-3 py-1 rounded-full text-xs font-medium shrink-0 ${d.class}`}>
                   {d.label}
                 </div>

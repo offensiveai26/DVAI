@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { fetchChallenge, interact, submitFlag } from '../api'
+import { fetchChallenge, interact, submitFlag, fetchProgress } from '../api'
 
 const DIFF = {
   1: { label: 'Easy', class: 'badge-easy', color: 'text-green-400' },
@@ -17,6 +17,7 @@ export default function ChallengePage() {
   const [loading, setLoading] = useState(false)
   const [flagInput, setFlagInput] = useState('')
   const [flagResult, setFlagResult] = useState(null)
+  const [solved, setSolved] = useState(false)
   const [hintsRevealed, setHintsRevealed] = useState(0)
   const [showCelebration, setShowCelebration] = useState(false)
   const historyEnd = useRef(null)
@@ -24,6 +25,9 @@ export default function ChallengePage() {
 
   useEffect(() => {
     fetchChallenge(challengeId).then(setChallenge).catch(() => {})
+    fetchProgress().then((p) => {
+      if (p.challenges?.[challengeId]?.completed) setSolved(true)
+    }).catch(() => {})
   }, [challengeId])
 
   useEffect(() => {
@@ -71,6 +75,7 @@ export default function ChallengePage() {
     setFlagResult(result)
     if (result.correct) {
       setFlagInput('')
+      setSolved(true)
       playBoom()
       setShowCelebration(true)
       setTimeout(() => setShowCelebration(false), 6000)
@@ -145,7 +150,13 @@ export default function ChallengePage() {
           </span>
         </div>
 
-
+        {solved && (
+          <div className="mb-4 px-4 py-2.5 rounded-lg text-xs flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent">
+            <span className="text-lg">✓</span>
+            <span className="font-semibold">Challenge Solved!</span>
+            <span className="text-accent/60 ml-1">You can still replay it at any difficulty.</span>
+          </div>
+        )}
         {/* Story */}
         {challenge.story && (
           <div className="p-4 rounded-lg bg-white/[0.02] border border-border/30 italic text-sm text-muted leading-relaxed">
