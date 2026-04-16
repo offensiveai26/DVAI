@@ -1,3 +1,4 @@
+# Requires Python 3.11-3.13 (pydantic-core does not support 3.14 yet)
 fastapi==0.115.0
 uvicorn[standard]==0.30.0
 httpx==0.27.0

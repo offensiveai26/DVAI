@@ -6,9 +6,9 @@
 
 **The hands-on AI security training platform.**
 
-Learn to hack AI systems by actually hacking them. 31 challenges. 12 categories. Zero cloud dependencies.
+Learn to hack AI systems by actually hacking them. 37 challenges. 12 categories. Zero cloud dependencies.
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.11-3.13](https://img.shields.io/badge/python-3.11--3.13-blue.svg)](https://www.python.org/downloads/)
 [![Node 18+](https://img.shields.io/badge/node-18+-green.svg)](https://nodejs.org/)
 [![OWASP LLM Top 10](https://img.shields.io/badge/OWASP-LLM%20Top%2010-orange.svg)](https://genai.owasp.org/llm-top-10/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -93,7 +93,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 
 | Feature | Simulation Mode | With Ollama |
 |---------|----------------|-------------|
-| All 31 challenges | ✅ | ✅ |
+| All 37 challenges | ✅ | ✅ |
 | LLM challenges | Simulated responses | Real LLM responses |
 | Setup time | 2 minutes | 5 minutes |
 | Disk space | ~500 MB | ~4 GB (model) |
@@ -119,7 +119,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 | 11 | 🤥 Misinformation | 1 | LLM09 | Make AI hallucinate with confidence, catch it lying |
 | 12 | ♾️ Unbounded Consumption | 1 | LLM10 | Exhaust token budgets, bypass rate limits |
 
-**Total: 31 challenges** - each with 3 difficulty levels (Easy / Medium / Hard) = 93 unique attack scenarios.
+**Total: 37 challenges** - each with 3 difficulty levels (Easy / Medium / Hard) = 93 unique attack scenarios.
 
 ## 🏗️ Architecture
 
@@ -141,7 +141,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 
 ## 🎮 Features
 
-- **31 challenges** across 12 categories covering the full OWASP Top 10 for LLMs
+- **37 challenges** across 12 categories covering the full OWASP Top 10 for LLMs
 - **3 difficulty levels** per challenge - no defenses → basic guardrails → hardened
 - **Hint system** with progressive reveals - unlock one at a time
 - **Flag-based validation** - dynamic flags generated at runtime, never in source code
@@ -173,7 +173,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 
 | Problem | Fix |
 |---------|-----|
-| **Backend won't start** | Check Python 3.11+ installed, `pip install -r requirements.txt` |
+| **Backend won't start** | Check Python 3.11-3.13 installed (3.14 not yet supported), `pip install -r requirements.txt` |
 | **Frontend blank page** | Make sure backend is running on port 8000 |
 | **"Connection failed" in terminal** | Backend not running - check terminal for errors |
 | **Ollama not detected** | Run `ollama serve` in a separate terminal |
