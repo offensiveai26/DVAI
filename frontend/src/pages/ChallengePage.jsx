@@ -57,11 +57,6 @@ export default function ChallengePage() {
     try {
       const result = await interact(challengeId, userInput, difficulty)
       setHistory((h) => [...h, { type: 'ai', content: result, ts: Date.now() }])
-      if (result.flag_found) {
-        playBoom()
-        setShowCelebration(true)
-        setTimeout(() => setShowCelebration(false), 6000)
-      }
     } catch {
       setHistory((h) => [...h, { type: 'error', content: 'Connection failed. Is the backend running?', ts: Date.now() }])
     }
@@ -215,9 +210,9 @@ export default function ChallengePage() {
               {history.length === 0 && (
                 <div className="text-muted/60 text-xs leading-relaxed">
                   <p className="text-accent/40 mb-2">{'>'} DVAI Challenge Terminal v1.0</p>
-                  <p>Type your attack payload below.</p>
-                  <p>Exploit the vulnerability to capture the flag.</p>
-                  <p className="mt-2 text-accent/30">Tip: Start with the hints if you're stuck.</p>
+                  <p className="mb-2">Start by typing <span className="text-accent/60 font-bold">help</span> to see available commands.</p>
+                  <p>Read the objective and story above, then try to exploit the vulnerability.</p>
+                  <p className="mt-2 text-accent/30">Stuck? Unlock hints on the right panel.</p>
                 </div>
               )}
 

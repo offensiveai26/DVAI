@@ -1,9 +1,13 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional
+from sqlalchemy.orm import Session
+from datetime import datetime
 import importlib
 
 from app.challenges.registry import get_categories, get_challenges, get_challenge
+from app.db import get_db
+from app.models import Progress
 
 router = APIRouter()
 
@@ -55,9 +59,18 @@ async def interact(challenge_id: str, body: ChallengeInput):
 
 
 @router.post("/{challenge_id}/submit")
-def submit_flag(challenge_id: str, body: FlagSubmission):
+def submit_flag(challenge_id: str, body: FlagSubmission, db: Session = Depends(get_db)):
     challenge = get_challenge(challenge_id)
     if not challenge:
         raise HTTPException(status_code=404, detail="Challenge not found")
     correct = body.flag.strip() == challenge["flag"]
+    if correct:
+        progress = db.query(Progress).filter(Progress.challenge_id == challenge_id).first()
+        if not progress:
+            progress = Progress(challenge_id=challenge_id)
+            db.add(progress)
+        progress.completed = True
+        progress.completed_at = datetime.utcnow()
+        progress.attempts += 1
+        db.commit()
     return {"correct": correct, "message": "🎉 Flag captured!" if correct else "❌ Wrong flag. Keep trying!"}

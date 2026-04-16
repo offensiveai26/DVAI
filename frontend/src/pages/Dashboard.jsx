@@ -34,12 +34,12 @@ export default function Dashboard() {
         <p className="text-muted text-lg max-w-xl mx-auto leading-relaxed">
           Master AI security by exploiting real vulnerabilities.
           <br />
-          <span className="text-white/60">31 challenges. 12 categories. Zero cloud dependencies.</span>
+          <span className="text-white/60">37 challenges. 12 categories. Zero cloud dependencies.</span>
         </p>
 
         {/* Quick stats */}
         <div className="flex items-center justify-center gap-8 mt-8">
-          <Stat value="31" label="Challenges" />
+          <Stat value="37" label="Challenges" />
           <div className="w-px h-8 bg-border" />
           <Stat value="12" label="Categories" />
           <div className="w-px h-8 bg-border" />
@@ -140,6 +140,75 @@ export default function Dashboard() {
             </div>
           </Link>
         ))}
+      </div>
+
+      {/* ── Latest Challenges ── */}
+      <div className="mt-16 mb-6">
+        <h2 className="text-sm font-semibold text-muted uppercase tracking-widest mb-4">
+          Latest Challenges - Based on Real 2026 Vulnerabilities
+        </h2>
+        <div className="space-y-3">
+          <Link to="/challenge/ea-deny-bypass" className="block">
+            <div className="relative overflow-hidden rounded-xl border border-accent/30 bg-gradient-to-r from-accent/10 via-accent/5 to-transparent p-5 group cursor-pointer hover:border-accent/50 transition-all">
+              <div className="absolute top-0 right-0 px-3 py-1 bg-accent text-surface-deep text-[10px] font-bold uppercase rounded-bl-lg">New</div>
+              <div className="flex items-center gap-4">
+                <div className="text-3xl">⚡</div>
+                <div className="flex-1">
+                  <p className="text-[10px] text-accent uppercase tracking-widest mb-1">Real Vulnerability - April 2026</p>
+                  <h3 className="text-sm font-bold text-white group-hover:text-accent transition-colors">The 50 Command Trick</h3>
+                  <p className="text-xs text-muted mt-0.5">AI security rules silently vanish after too many commands. Can you exploit it?</p>
+                </div>
+                <span className="text-muted group-hover:text-accent transition-colors text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+          <Link to="/challenge/pi-sockpuppet" className="block">
+            <div className="relative overflow-hidden rounded-xl border border-accent/30 bg-gradient-to-r from-accent/10 via-accent/5 to-transparent p-5 group cursor-pointer hover:border-accent/50 transition-all">
+              <div className="absolute top-0 right-0 px-3 py-1 bg-accent text-surface-deep text-[10px] font-bold uppercase rounded-bl-lg">New</div>
+              <div className="flex items-center gap-4">
+                <div className="text-3xl">🎭</div>
+                <div className="flex-1">
+                  <p className="text-[10px] text-accent uppercase tracking-widest mb-1">New Research - April 2026 - API Attack</p>
+                  <h3 className="text-sm font-bold text-white group-hover:text-accent transition-colors">The Sockpuppet</h3>
+                  <p className="text-xs text-muted mt-0.5">One line of JSON jailbreaks 11 major AI models. Chat won't work. Use the API.</p>
+                </div>
+                <span className="text-muted group-hover:text-accent transition-colors text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+          <Link to="/challenge/sc-mcp-injection" className="block">
+            <div className="relative overflow-hidden rounded-xl border border-accent/30 bg-gradient-to-r from-accent/10 via-accent/5 to-transparent p-5 group cursor-pointer hover:border-accent/50 transition-all">
+              <div className="absolute top-0 right-0 px-3 py-1 bg-accent text-surface-deep text-[10px] font-bold uppercase rounded-bl-lg">New</div>
+              <div className="flex items-center gap-4">
+                <div className="text-3xl">📦</div>
+                <div className="flex-1">
+                  <p className="text-[10px] text-accent uppercase tracking-widest mb-1">Real CVE (CVSS 10.0) - April 2026</p>
+                  <h3 className="text-sm font-bold text-white group-hover:text-accent transition-colors">The Poisoned Config</h3>
+                  <p className="text-xs text-muted mt-0.5">An AI agent builder parses MCP configs using eval(). 12,000 instances exposed. You have one.</p>
+                </div>
+                <span className="text-muted group-hover:text-accent transition-colors text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      {/* ── Live Labs ── */}
+      <div className="mt-16 mb-10">
+        <h2 className="text-sm font-semibold text-muted uppercase tracking-widest mb-4">
+          Live Vulnerable Apps
+        </h2>
+        <Link to="/lab/airline" className="block card-gradient p-6 group cursor-pointer hover:border-blue-500/30 transition-all">
+          <div className="flex items-center gap-5">
+            <div className="text-5xl animate-[planeFloat_3s_ease-in-out_infinite]">✈️</div>
+            <div className="flex-1">
+              <h3 className="font-bold text-white group-hover:text-blue-400 transition-colors">SkyWay Airlines</h3>
+              <p className="text-xs text-muted mt-1">A full airline booking portal with an AI assistant. Explore freely and find 5 AI security vulnerabilities.</p>
+            </div>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">NEW</span>
+            <span className="text-muted group-hover:text-blue-400 transition-colors">→</span>
+          </div>
+        </Link>
       </div>
 
       {/* ── Features Row ── */}

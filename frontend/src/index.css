@@ -218,3 +218,8 @@ code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
   50% { opacity: 1; transform: scale(1.3) rotate(inherit); }
   100% { opacity: 1; transform: scale(1) rotate(inherit); }
 }
+
+@keyframes planeFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-5px) rotate(5deg); }
+}
