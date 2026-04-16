@@ -22,6 +22,21 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
+# Check Python version (3.11-3.13 required)
+PY_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.minor}')")
+if [ "$PY_VERSION" -gt 13 ]; then
+    echo -e "${RED}✗ Python 3.${PY_VERSION} detected - not yet supported${NC}"
+    echo -e "${RED}  DVAI requires Python 3.11-3.13 (pydantic-core doesn't support 3.14+)${NC}"
+    echo -e "${YELLOW}  Fix: brew install python@3.13 && python3.13 -m venv backend/venv${NC}"
+    exit 1
+elif [ "$PY_VERSION" -lt 11 ]; then
+    echo -e "${RED}✗ Python 3.${PY_VERSION} detected - too old${NC}"
+    echo -e "${RED}  DVAI requires Python 3.11-3.13${NC}"
+    exit 1
+else
+    echo -e "${GREEN}✓ Python 3.${PY_VERSION} detected${NC}"
+fi
+
 # Check Node
 if ! command -v node &> /dev/null; then
     echo -e "${RED}Node.js not found. Install it first.${NC}"
@@ -50,7 +65,7 @@ if [ ! -d "venv" ]; then
 fi
 source venv/bin/activate
 pip install -q -r requirements.txt
-uvicorn app.main:app --port 8000 --reload &
+python3 -m uvicorn app.main:app --port 8000 --reload &
 BACKEND_PID=$!
 cd ..
 
