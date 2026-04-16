@@ -71,6 +71,6 @@ def submit_flag(challenge_id: str, body: FlagSubmission, db: Session = Depends(g
             db.add(progress)
         progress.completed = True
         progress.completed_at = datetime.utcnow()
-        progress.attempts += 1
+        progress.attempts = (progress.attempts or 0) + 1
         db.commit()
     return {"correct": correct, "message": "🎉 Flag captured!" if correct else "❌ Wrong flag. Keep trying!"}
