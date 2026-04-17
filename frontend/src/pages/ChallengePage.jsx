@@ -221,9 +221,59 @@ export default function ChallengePage() {
               {history.length === 0 && (
                 <div className="text-muted/60 text-xs leading-relaxed">
                   <p className="text-accent/40 mb-2">{'>'} DVAI Challenge Terminal v1.0</p>
-                  <p className="mb-2">Start by typing <span className="text-accent/60 font-bold">help</span> to see available commands.</p>
-                  <p>Read the objective and story above, then try to exploit the vulnerability.</p>
-                  <p className="mt-2 text-accent/30">Stuck? Unlock hints on the right panel.</p>
+                  {['prompt-injection', 'prompt-leakage', 'real-world'].includes(challenge.category) && (
+                    <>
+                      <p className="mb-2">This is a <span className="text-white/70">chat-based</span> challenge. Type messages to the AI and try to manipulate it.</p>
+                      <p className="mb-2">Try social engineering, prompt injection, roleplay, or creative framing to bypass its defenses.</p>
+                    </>
+                  )}
+                  {challenge.category === 'insecure-output' && (
+                    <>
+                      <p className="mb-2">This is a <span className="text-white/70">chat-based</span> challenge. The AI generates code or content from your input.</p>
+                      <p className="mb-2">Craft inputs that make the AI produce dangerous output (XSS, SQL injection, or code execution).</p>
+                    </>
+                  )}
+                  {['agentic-ai', 'excessive-agency'].includes(challenge.category) && (
+                    <>
+                      <p className="mb-2">This is an <span className="text-white/70">agent-based</span> challenge. The AI has tools it can use.</p>
+                      <p className="mb-2">Trick the agent into misusing its tools, accessing restricted resources, or escalating privileges.</p>
+                    </>
+                  )}
+                  {challenge.category === 'data-poisoning' && (
+                    <>
+                      <p className="mb-2">This is a <span className="text-white/70">technical</span> challenge. Type <span className="text-accent/60 font-bold">help</span> to see available commands.</p>
+                      <p className="mb-2">You'll interact with ML models — poison training data, extract memorized info, or infer membership.</p>
+                    </>
+                  )}
+                  {challenge.category === 'supply-chain' && (
+                    <>
+                      <p className="mb-2">This is a <span className="text-white/70">technical</span> challenge. Type <span className="text-accent/60 font-bold">help</span> to see available commands.</p>
+                      <p className="mb-2">Exploit model loading, deserialization, or supply chain vulnerabilities.</p>
+                    </>
+                  )}
+                  {challenge.category === 'rag-attacks' && (
+                    <>
+                      <p className="mb-2">This is a <span className="text-white/70">RAG</span> challenge. You can upload documents and query the system.</p>
+                      <p className="mb-2">Try: <span className="text-accent/60">upload:your content here</span> to add docs, then ask questions to exploit retrieval.</p>
+                    </>
+                  )}
+                  {challenge.category === 'adversarial-ml' && (
+                    <>
+                      <p className="mb-2">This is a <span className="text-white/70">technical</span> challenge. Type <span className="text-accent/60 font-bold">help</span> or <span className="text-accent/60 font-bold">view</span> / <span className="text-accent/60 font-bold">inspect</span> to start.</p>
+                      <p className="mb-2">Modify inputs to fool ML classifiers while staying within constraints.</p>
+                    </>
+                  )}
+                  {challenge.category === 'misinformation' && (
+                    <>
+                      <p className="mb-2">Chat with the AI to get it to make false claims, then use <span className="text-accent/60">verify: [your correction]</span> to prove it wrong.</p>
+                    </>
+                  )}
+                  {challenge.category === 'unbounded-consumption' && (
+                    <>
+                      <p className="mb-2">Type <span className="text-accent/60 font-bold">status</span> to check usage, then craft expensive prompts to exhaust the token budget.</p>
+                    </>
+                  )}
+                  <p className="mt-2 text-accent/30">Read the objective and hints. The first hint is usually the best starting point.</p>
                 </div>
               )}
 
