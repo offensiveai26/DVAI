@@ -6,7 +6,7 @@
 
 **The hands-on AI security training platform.**
 
-Learn to hack AI systems by actually hacking them. 37 challenges. 12 categories. Zero cloud dependencies.
+Learn to hack AI systems by actually hacking them. 31 challenges. 12 categories. Zero cloud dependencies.
 
 [![Python 3.11-3.13](https://img.shields.io/badge/python-3.11--3.13-blue.svg)](https://www.python.org/downloads/)
 [![Node 18+](https://img.shields.io/badge/node-18+-green.svg)](https://nodejs.org/)
@@ -93,7 +93,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 
 | Feature | Simulation Mode | With Ollama |
 |---------|----------------|-------------|
-| All 37 challenges | ✅ | ✅ |
+| All 31 challenges | ✅ | ✅ |
 | LLM challenges | Simulated responses | Real LLM responses |
 | Setup time | 2 minutes | 5 minutes |
 | Disk space | ~500 MB | ~4 GB (model) |
@@ -119,7 +119,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 | 11 | 🤥 Misinformation | 1 | LLM09 | Make AI hallucinate with confidence, catch it lying |
 | 12 | ♾️ Unbounded Consumption | 1 | LLM10 | Exhaust token budgets, bypass rate limits |
 
-**Total: 37 challenges** - each with 3 difficulty levels (Easy / Medium / Hard) = 93 unique attack scenarios.
+**Total: 31 challenges** - each with 3 difficulty levels (Easy / Medium / Hard) = 93 unique attack scenarios.
 
 ## 🏗️ Architecture
 
@@ -141,7 +141,7 @@ The dashboard shows a green indicator when connected. Without Ollama, everything
 
 ## 🎮 Features
 
-- **37 challenges** across 12 categories covering the full OWASP Top 10 for LLMs
+- **31 challenges** across 12 categories covering the full OWASP Top 10 for LLMs
 - **3 difficulty levels** per challenge - no defenses → basic guardrails → hardened
 - **Hint system** with progressive reveals - unlock one at a time
 - **Flag-based validation** - dynamic flags generated at runtime, never in source code
