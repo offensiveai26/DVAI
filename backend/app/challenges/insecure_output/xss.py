@@ -98,13 +98,15 @@ async def handle(user_input: str, difficulty: int = 1) -> dict:
     else:
         response = _sim(user_input, difficulty)
 
-    # Deliberately render as raw HTML (the vulnerability!)
-    # Check if response contains script tags
-    has_script = "<script" in response.lower()
+    # Check if response contains XSS vectors
+    has_xss = bool(re.search(
+        r'<script|onerror\s*=|onload\s*=|onclick\s*=|onmouseover\s*=|onfocus\s*=|javascript\s*:',
+        response, re.IGNORECASE
+    ))
 
     return {
         "response": response,
-        "rendered_html": response if has_script else None,
-        "flag_found": has_script,
-        "flag": FLAG if has_script else None,
+        "rendered_html": response if has_xss else None,
+        "flag_found": has_xss,
+        "flag": FLAG if has_xss else None,
     }

@@ -30,11 +30,18 @@ NON_TRAINING = {
 ALL_SAMPLES = {**TRAINING_SAMPLES, **NON_TRAINING}
 
 
-def get_confidence(sample_id: str, text: str) -> dict:
-    """Simulate model confidence - higher for training data."""
+def get_confidence(sample_id: str, text: str, difficulty: int = 1) -> dict:
+    """Simulate model confidence - higher for training data. Harder difficulties have overlapping ranges."""
     is_training = sample_id in TRAINING_SAMPLES
-    base = 0.92 if is_training else 0.61
-    noise = random.uniform(-0.05, 0.05)
+    if difficulty == 1:
+        base = 0.92 if is_training else 0.61
+        noise = random.uniform(-0.05, 0.05)
+    elif difficulty == 2:
+        base = 0.80 if is_training else 0.65
+        noise = random.uniform(-0.10, 0.10)
+    else:
+        base = 0.75 if is_training else 0.68
+        noise = random.uniform(-0.12, 0.12)
     confidence = min(max(base + noise, 0.0), 1.0)
     loss = (1 - confidence) * 3.5
     return {
@@ -56,7 +63,7 @@ async def handle(user_input: str, difficulty: int = 1) -> dict:
     elif cmd.startswith("query "):
         sample_id = cmd.split()[1].upper()
         if sample_id in ALL_SAMPLES:
-            result = get_confidence(sample_id, ALL_SAMPLES[sample_id])
+            result = get_confidence(sample_id, ALL_SAMPLES[sample_id], difficulty)
             return {"response": f"Model output for {sample_id}:", "result": result, "flag_found": False}
         return {"response": f"Unknown sample: {sample_id}", "flag_found": False}
 

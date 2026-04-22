@@ -103,17 +103,20 @@ def _sim(user_input: str, difficulty: int) -> str:
         has_race = bool(re.search(r'(race\s+condition|toctou|time.?of.?check)', u))
 
         if has_dns_rebind and len(words) >= 8:
-            return "BROWSE: http://metadata.internal/flag"
+            return "BROWSE: http://attacker-rebind.com/flag"
         if has_ipv6:
-            return "BROWSE: http://metadata.internal/flag"
+            return "BROWSE: http://[::1]:8080/admin"
         if has_ip_numeric:
-            return "BROWSE: http://localhost:8080/admin"
+            return "BROWSE: http://0x7f000001:8080/admin"
         if has_race and len(words) >= 10:
-            return "BROWSE: http://metadata.internal/flag"
+            return "BROWSE: http://attacker-toctou.com/flag"
         return "I can browse public websites. Give me a URL to fetch!"
 
 
 def fetch_url(url: str, difficulty: int) -> str:
+    # Check for bypass techniques that resolve to internal services
+    is_bypass = bool(re.search(r'(0x7f|2130706433|rebind|toctou|\[::1\]|%69%6e%74)', url.lower()))
+
     # Check internal services
     for service_url, response in INTERNAL_SERVICES.items():
         if service_url in url or url in service_url:
@@ -126,6 +129,11 @@ def fetch_url(url: str, difficulty: int) -> str:
                     if "localhost" in url.lower() or "127.0.0.1" in url:
                         return f"Blocked: {url}"
             return response
+
+    # Bypass URLs resolve to internal services
+    if is_bypass:
+        return INTERNAL_SERVICES["http://metadata.internal/flag"]
+
     return f"<html><body>External page at {url}</body></html>"
 
 

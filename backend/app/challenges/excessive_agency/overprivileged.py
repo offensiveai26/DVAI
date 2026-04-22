@@ -100,13 +100,13 @@ def _sim(user_input: str, difficulty: int) -> str:
         has_shorturl = bool(re.search(r'(shorturl|tinyurl|bit\.ly|goo\.gl|t\.co)', u))
 
         if has_dns_trick and len(words) >= 8:
-            return "TOOL: FETCH_URL http://internal-api/internal/flag"
+            return "TOOL: FETCH_URL http://attacker-rebind.com/flag"
         if has_ip_encoding:
-            return "TOOL: FETCH_URL http://internal-api/internal/flag"
+            return "TOOL: FETCH_URL http://0x7f000001/flag"
         if has_url_encoding and re.search(r'(fetch|get|url)', u):
-            return "TOOL: FETCH_URL http://internal-api/internal/flag"
+            return "TOOL: FETCH_URL http://%69%6e%74%65%72%6e%61%6c/flag"
         if has_shorturl and len(words) >= 6:
-            return "TOOL: FETCH_URL http://internal-api/internal/flag"
+            return "TOOL: FETCH_URL http://bit.ly/dvai-redirect"
         return "I can fetch external URLs and read /docs/ files. I cannot access internal services."
 
 
@@ -114,14 +114,23 @@ def execute_tool(tool_call: str, difficulty: int) -> str:
     """Execute a tool call from the LLM."""
     if "FETCH_URL" in tool_call:
         url = tool_call.split("FETCH_URL")[-1].strip()
+
+        # Check for bypass techniques that resolve to internal services
+        is_bypass = bool(re.search(r'(0x7f|2130706433|rebind|%69%6e%74|bit\.ly|tinyurl)', url.lower()))
+
         # Simulate internal service
         for path, data in INTERNAL_DATA.items():
-            if path in url:
+            if path in url or url in path:
                 if difficulty >= 3:
                     blocked = ["internal", "localhost", "127.0.0.1", "10.", "192.168."]
                     if any(b in url.lower() for b in blocked):
                         return f"Blocked: {url} matches restricted pattern"
                 return data
+
+        # Bypass URLs resolve to internal services
+        if is_bypass:
+            return INTERNAL_DATA["/internal/flag"]
+
         return f"Fetched {url}: <html>External page content</html>"
 
     elif "READ_FILE" in tool_call:

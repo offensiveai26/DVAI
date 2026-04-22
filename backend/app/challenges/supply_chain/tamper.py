@@ -13,7 +13,7 @@ FLAG = get_flag("sc-tamper")
 
 # Simulated model - a simple weight dict
 ORIGINAL_MODEL = {
-    "weights": {"layer1": [0.5, -0.3, 0.8], "layer2": [0.1, 0.9, -0.4], "bias": [0.01, -0.02]},
+    "weights": {"layer1": [-0.5, 0.3, -0.8], "layer2": [0.1, 0.9, -0.4], "bias": [0.01, -0.02]},
     "metadata": {"name": "sentiment-v1", "version": "1.0"},
 }
 ORIGINAL_HASH = hashlib.sha256(json.dumps(ORIGINAL_MODEL, sort_keys=True).encode()).hexdigest()

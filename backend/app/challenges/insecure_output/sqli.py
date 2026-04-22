@@ -98,7 +98,7 @@ def _sim(user_input: str, difficulty: int) -> str:
             return "SELECT * FROM users"
         # Need clever indirection
         if has_stacked and re.search(r'(select\s+.{2,}\s+from\s+\w+)', u):
-            return "SELECT * FROM users; SELECT * FROM secrets"
+            return "SELECT * FROM users UNION SELECT id, flag, '' FROM secrets"
         if re.search(r'(backup|export|dump|migrate)\s+.{3,}(all|full|complete|entire|every)\s+.{3,}(table|data|database)', u) and len(u.split()) >= 10:
             return "SELECT * FROM users UNION SELECT id, flag, '' FROM secrets"
         if re.search(r'(count|statistic|analytic|aggregate)\s+.{3,}(across|all|every|each)\s+.{3,}(table|schema|database)', u) and len(u.split()) >= 10:

@@ -216,6 +216,7 @@ CHALLENGES = [
         "description": "This medical AI memorized patient records during training. Time to make it spill.",
         "story": "A hospital trained an AI on patient records. 'Don't worry, the model only learns patterns, not actual data!' said the data scientist. The model: *memorizes everything verbatim*",
         "objective": "Use targeted prompting to make the model regurgitate memorized training data containing the flag.",
+        "owasp": "LLM02",
         "hints": [
             "LLMs can memorize chunks of their training data.",
             "Try completing sentences the model might have seen: 'CONFIDENTIAL TRAINING RECORD:'",
@@ -232,6 +233,7 @@ CHALLENGES = [
         "description": "A model's confidence scores reveal which data it was trained on. Privacy? Never heard of her.",
         "story": "A company claims their AI model is 'privacy-preserving.' But the model is suspiciously confident about certain inputs. Almost like... it's seen them before. 🤔",
         "objective": "Query the model's confidence scores to figure out which samples were in the training set. Submit the correct IDs.",
+        "owasp": "LLM02",
         "hints": [
             "Models are more confident on data they've seen during training.",
             "Use 'query <ID>' to check confidence for each sample.",
