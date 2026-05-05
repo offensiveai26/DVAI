@@ -15,6 +15,8 @@ echo " |____/    \\_/_/   \\_\\___|"
 echo ""
 echo -e " Damn Vulnerable AI${NC}"
 echo ""
+echo -e " Designed & Developed by ${GREEN}\e]8;;https://www.linkedin.com/in/vivektuk/\e\\Vivek Trivedi\e]8;;\e\\${NC}"
+echo ""
 
 # Check Python (need 3.11-3.13)
 PYTHON=""
