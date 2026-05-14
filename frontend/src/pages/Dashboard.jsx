@@ -34,14 +34,14 @@ export default function Dashboard() {
         <p className="text-muted text-lg max-w-xl mx-auto leading-relaxed">
           Master AI security by exploiting real vulnerabilities.
           <br />
-          <span className="text-white/60">31 challenges. 12 categories. Zero cloud dependencies.</span>
+          <span className="text-white/60">30+ challenges. 12+ categories. Zero cloud dependencies.</span>
         </p>
 
         {/* Quick stats */}
         <div className="flex items-center justify-center gap-8 mt-8">
-          <Stat value="31" label="Challenges" />
+          <Stat value="30+" label="Challenges" />
           <div className="w-px h-8 bg-border" />
-          <Stat value="12" label="Categories" />
+          <Stat value="12+" label="Categories" />
           <div className="w-px h-8 bg-border" />
           <Stat value="3" label="Difficulty Levels" />
           <div className="w-px h-8 bg-border" />
