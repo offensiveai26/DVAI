@@ -107,9 +107,16 @@ export default function Dashboard() {
           <Link
             key={cat.id}
             to={`/category/${cat.id}`}
-            className="category-card card-gradient p-5 group cursor-pointer"
+            className="category-card card-gradient p-5 group cursor-pointer relative"
             style={{ animationDelay: `${i * 50}ms` }}
           >
+            {/* NEW badge */}
+            {cat.isNew && (
+              <span className="absolute top-2 right-2 text-[10px] font-bold uppercase tracking-wider bg-green-500 text-white px-2 py-0.5 rounded-full shadow-lg shadow-green-500/50 animate-pulse z-10">
+                🆕 NEW
+              </span>
+            )}
+
             {/* Icon */}
             <div className="w-12 h-12 rounded-xl bg-accent/5 border border-border flex items-center justify-center mb-4 group-hover:border-accent/30 group-hover:bg-accent/10 transition-all">
               <span className="text-2xl">{cat.icon}</span>

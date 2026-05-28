@@ -96,6 +96,7 @@ CATEGORIES = [
         "icon": "🏗️",
         "description": "Exploit vulnerabilities in AI serving infrastructure - gateways, proxies, and middleware protecting AI endpoints.",
         "owasp": "LLM06",
+        "isNew": True,
     },
 ]
 
