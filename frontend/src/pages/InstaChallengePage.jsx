@@ -89,10 +89,6 @@ export default function InstaChallengePage() {
     try {
       const result = await interact(challengeId, userInput, difficulty)
       setChatHistory((h) => [...h, { type: 'ai', content: result }])
-      // If flag found, unlock hacked phase (user submits flag manually)
-      if (result.flag_found) {
-        setTimeout(() => setPhase('hacked'), 2000)
-      }
     } catch {
       setChatHistory((h) => [...h, { type: 'ai', content: { response: 'Connection error. Try again.' } }])
     }
@@ -100,7 +96,7 @@ export default function InstaChallengePage() {
     inputRef.current?.focus()
   }
 
-  // Handle flag submission
+  // Handle flag submission - on success, show the stolen account page
   const handleFlagSubmit = async (e) => {
     e.preventDefault()
     if (!flagValue.trim()) return
@@ -111,6 +107,7 @@ export default function InstaChallengePage() {
       playBoom()
       setShowCelebration(true)
       setTimeout(() => setShowCelebration(false), 6000)
+      setTimeout(() => setPhase('hacked'), 2500)
     }
   }
 
