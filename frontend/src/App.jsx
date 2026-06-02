@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
 import CategoryPage from './pages/CategoryPage'
 import ChallengePage from './pages/ChallengePage'
+import InstaChallengePage from './pages/InstaChallengePage'
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/category/:categoryId" element={<CategoryPage />} />
+        <Route path="/challenge/rw-insta-takeover" element={<InstaChallengePage />} />
         <Route path="/challenge/:challengeId" element={<ChallengePage />} />
       </Routes>
     </Layout>
